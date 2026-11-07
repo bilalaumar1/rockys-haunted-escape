@@ -1,0 +1,105 @@
+
+/* Rocky's Haunted Escape — responsive touch controls */
+
+.game-canvas-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.game-canvas-wrapper canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  touch-action: none;
+}
+
+.mobile-controls {
+  display: none;
+}
+
+/* MOBILE ONLY */
+@media (max-width: 1024px) {
+  .mobile-controls {
+    position: absolute;
+    z-index: 20;
+    right: 0;
+    bottom: 22px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-sizing: border-box;
+    padding: 0 14px;
+    pointer-events: none;
+  }
+
+  .mobile-movement {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .mobile-control-button {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    place-items: center;
+    border: 2px solid #ff9b35;
+    border-radius: 15px;
+    background: rgba(20, 15, 55, 0.9);
+    color: #fff0dc;
+    font-size: 21px;
+    font-weight: 900;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-control-button:active {
+    background: #ff922b;
+    color: #17132d;
+    transform: scale(0.95);
+  }
+
+  .mobile-control-button.jump-button {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    font-size: 15px;
+  }
+
+  .game-controls-hint {
+    display: none;
+  }
+}
+
+/* SMALL MOBILE SCREENS */
+@media (max-width: 380px) {
+  .mobile-controls {
+    bottom: 12px;
+    gap: 8px;
+    padding: 0 9px;
+  }
+
+  .mobile-movement {
+    gap: 8px;
+  }
+
+  .mobile-control-button {
+    width: 50px;
+    height: 50px;
+    font-size: 19px;
+  }
+
+  .mobile-control-button.jump-button {
+    width: 66px;
+    height: 66px;
+    font-size: 13px;
+  }
+}

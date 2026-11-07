@@ -1,0 +1,3188 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Nunito:wght@500;600;700;800;900;1000&family=Rye&family=Bowlby+One+SC&display=swap');
+
+:root {
+
+  --night: #090923;
+
+  --deep: #11103a;
+
+  --purple: #24105d;
+
+  --violet: #7134d5;
+
+  --violet-bright: #a56aff;
+
+  --orange: #ff8b19;
+
+  --orange-light: #ffbd52;
+
+  --cream: #fff0d9;
+
+  --ink: #100d2b;
+
+}
+
+* {
+
+  box-sizing: border-box;
+
+}
+
+html,
+
+body,
+
+#root {
+
+  min-height: 100%;
+
+  margin: 0;
+
+}
+
+body {
+
+  background: #080817;
+
+  color: var(--cream);
+
+  font-family: 'Nunito', 'Trebuchet MS', sans-serif;
+
+}
+
+button,
+
+input {
+
+  font: inherit;
+
+}
+
+button {
+
+  -webkit-tap-highlight-color: transparent;
+
+  cursor: pointer;
+
+}
+
+.game-shell {
+
+  min-height: 100vh;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #080817;
+
+  color: var(--cream);
+
+}
+
+.night-sky {
+
+  position: relative;
+
+  min-height: 100vh;
+
+  min-height: 100dvh;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background:
+
+    radial-gradient(ellipse at 50% 76%, rgba(111, 49, 190, .58), transparent 48%),
+
+    radial-gradient(ellipse at 12% 15%, rgba(74, 65, 186, .45), transparent 38%),
+
+    linear-gradient(180deg, #252b83 0%, #32217d 43%, #1b124c 74%, #090923 100%);
+
+}
+
+/* MAIN MENU BACKGROUND */
+
+.menu-background-image {
+
+  position: absolute;
+
+  z-index: 0;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  user-select: none;
+
+  pointer-events: none;
+
+}
+
+/* Keep the background image clean and visible */
+
+.night-sky:has(.menu-background-image)::before {
+
+  content: '';
+
+  position: absolute;
+
+  z-index: 1;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+
+    180deg,
+
+    rgba(9, 6, 30, .02) 0%,
+
+    rgba(9, 6, 30, .02) 55%,
+
+    rgba(9, 6, 30, .12) 100%
+
+  );
+
+}
+
+.night-sky::after {
+
+  content: '';
+
+  position: absolute;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  left: -5%;
+
+  right: -5%;
+
+  bottom: 0;
+
+  height: 15%;
+
+  background: linear-gradient(
+
+    180deg,
+
+    transparent,
+
+    rgba(8, 7, 31, .35) 35%,
+
+    rgba(8, 7, 31, .65) 100%
+
+  );
+
+}
+
+.stars {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+}
+
+.moon {
+
+  position: absolute;
+
+  z-index: 1;
+
+  width: clamp(175px, 21vw, 310px);
+
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  right: 13%;
+
+  top: 16%;
+
+  overflow: hidden;
+
+  background: radial-gradient(
+
+    circle at 32% 28%,
+
+    #e5fbff 0%,
+
+    #bcecff 35%,
+
+    #83cafa 72%,
+
+    #6da6e8 100%
+
+  );
+
+  box-shadow:
+
+    0 0 35px #a8e5ffb0,
+
+    0 0 95px #82baff70,
+
+    inset -18px -12px 32px #4682c8aa;
+
+}
+
+.moon::before,
+
+.moon::after {
+
+  content: '';
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: #6eb6e777;
+
+  filter: blur(1px);
+
+}
+
+.moon::before {
+
+  width: 24%;
+
+  height: 16%;
+
+  left: 22%;
+
+  top: 28%;
+
+  transform: rotate(-25deg);
+
+}
+
+.moon::after {
+
+  width: 18%;
+
+  height: 12%;
+
+  right: 20%;
+
+  bottom: 25%;
+
+  transform: rotate(28deg);
+
+}
+
+.moon-crater {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: #6fb8e766;
+
+}
+
+.crater-one {
+
+  width: 23%;
+
+  height: 15%;
+
+  top: 28%;
+
+  left: 22%;
+
+}
+
+.crater-two {
+
+  width: 15%;
+
+  height: 11%;
+
+  top: 60%;
+
+  left: 57%;
+
+}
+
+.crater-three {
+
+  width: 11%;
+
+  height: 8%;
+
+  top: 18%;
+
+  left: 62%;
+
+}
+
+.bats {
+
+  position: absolute;
+
+  z-index: 2;
+
+  color: #080817;
+
+  font-size: clamp(34px, 5vw, 72px);
+
+  text-shadow: 0 2px 0 #080817;
+
+  pointer-events: none;
+
+}
+
+.bat-one {
+
+  top: 9%;
+
+  left: 18%;
+
+  transform: rotate(-12deg);
+
+}
+
+.bat-two {
+
+  top: 25%;
+
+  right: 30%;
+
+  transform: rotate(25deg);
+
+}
+
+.witch {
+
+  position: absolute;
+
+  top: 18%;
+
+  right: 8%;
+
+  z-index: 2;
+
+  font-size: 58px;
+
+  color: #080817;
+
+  transform: rotate(-22deg);
+
+}
+
+.haunted-house {
+
+  position: absolute;
+
+  bottom: 8%;
+
+  z-index: 2;
+
+  width: clamp(130px, 18vw, 250px);
+
+  filter: drop-shadow(0 0 18px #07071e);
+
+}
+
+.house-left {
+
+  left: 2%;
+
+}
+
+.house-right {
+
+  right: 2%;
+
+  transform: scale(.82);
+
+  transform-origin: bottom;
+
+}
+
+.house-body {
+
+  position: relative;
+
+  height: clamp(175px, 24vh, 260px);
+
+  background: linear-gradient(90deg, #090d25, #10142e 50%, #090d25);
+
+  border: 3px solid #08091e;
+
+  box-shadow: 0 0 25px #08091c;
+
+}
+
+.house-roof {
+
+  position: relative;
+
+  width: 0;
+
+  height: 0;
+
+  margin: 0 auto -3px;
+
+  border-left: clamp(65px, 9vw, 125px) solid transparent;
+
+  border-right: clamp(65px, 9vw, 125px) solid transparent;
+
+  border-bottom: clamp(75px, 10vw, 135px) solid #0b102a;
+
+}
+
+.house-body span {
+
+  position: absolute;
+
+  width: 19px;
+
+  height: 32px;
+
+  background: #ff821b;
+
+  box-shadow: 0 0 14px #ff841c;
+
+  top: 38px;
+
+}
+
+.house-body span:nth-child(1) {
+
+  left: 18%;
+
+}
+
+.house-body span:nth-child(2) {
+
+  right: 18%;
+
+}
+
+.house-body span:nth-child(3) {
+
+  left: 18%;
+
+  top: 105px;
+
+}
+
+.house-body span:nth-child(4) {
+
+  right: 18%;
+
+  top: 105px;
+
+}
+
+.house-door {
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 42%;
+
+  width: 35px;
+
+  height: 80px;
+
+  background: #080b20;
+
+  border: 2px solid #ff841c;
+
+}
+
+.tree {
+
+  position: absolute;
+
+  z-index: 3;
+
+  bottom: 9%;
+
+  width: 8px;
+
+  height: 290px;
+
+  background: #080817;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+}
+
+.tree::before,
+
+.tree::after,
+
+.tree i {
+
+  content: '';
+
+  position: absolute;
+
+  width: 7px;
+
+  height: 125px;
+
+  background: #080817;
+
+  transform-origin: bottom;
+
+  border-radius: 50%;
+
+}
+
+.tree::before {
+
+  transform: rotate(-42deg);
+
+  top: 0;
+
+  left: -5px;
+
+}
+
+.tree::after {
+
+  transform: rotate(48deg);
+
+  top: 10px;
+
+  left: 2px;
+
+}
+
+.tree i:nth-child(1) {
+
+  transform: rotate(-60deg);
+
+  top: 55px;
+
+  left: -3px;
+
+}
+
+.tree i:nth-child(2) {
+
+  transform: rotate(65deg);
+
+  top: 80px;
+
+  left: 2px;
+
+}
+
+.tree i:nth-child(3) {
+
+  transform: rotate(-28deg);
+
+  top: 110px;
+
+  left: -5px;
+
+}
+
+.tree-left {
+
+  left: 1.5%;
+
+}
+
+.tree-right {
+
+  right: 2%;
+
+  transform: scaleX(-1);
+
+}
+
+.grave {
+
+  position: absolute;
+
+  bottom: 8%;
+
+  z-index: 3;
+
+  width: 31px;
+
+  height: 55px;
+
+  background: #090a1d;
+
+  border-radius: 15px 15px 0 0;
+
+}
+
+.grave::after {
+
+  content: '';
+
+  position: absolute;
+
+  width: 55px;
+
+  height: 10px;
+
+  background: #090a1d;
+
+  top: 16px;
+
+  left: -12px;
+
+}
+
+.grave-one {
+
+  left: 35%;
+
+}
+
+.grave-two {
+
+  right: 35%;
+
+  transform: scale(.8);
+
+}
+
+.grave-three {
+
+  right: 18%;
+
+  transform: scale(.65);
+
+}
+
+.fog {
+
+  position: absolute;
+
+  z-index: 3;
+
+  bottom: 4%;
+
+  width: 38vw;
+
+  height: 95px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(ellipse, #7866d45c, transparent 70%);
+
+  filter: blur(14px);
+
+  pointer-events: none;
+
+}
+
+.fog-left {
+
+  left: -10%;
+
+}
+
+.fog-right {
+
+  right: -10%;
+
+}
+
+/* CONTENT LAYOUT */
+
+.game-content {
+
+  position: relative;
+
+  z-index: 5;
+
+  min-height: 100vh;
+
+  min-height: 100dvh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  padding: clamp(28px, 5vh, 60px) 20px 145px;
+
+}
+
+/* MAIN MENU TITLE */
+
+.game-logo {
+
+  position: relative;
+
+  z-index: 6;
+
+  text-align: center;
+
+  margin-bottom: 22px;
+
+  filter: drop-shadow(6px 8px 0 #100d30);
+
+}
+
+.logo-castle {
+
+  color: #080817;
+
+  font-size: clamp(22px, 3vw, 42px);
+
+  letter-spacing: 10px;
+
+  margin-bottom: -8px;
+
+}
+
+.game-logo h1 {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  margin: 0;
+
+  line-height: .88;
+
+  font-family: 'Rye', 'Cinzel', Georgia, serif;
+
+  font-size: clamp(45px, 6.4vw, 88px);
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  color: #ff831b;
+
+  -webkit-text-stroke: 1.5px #25153c;
+
+  text-shadow:
+
+    3px 4px 0 #080817,
+
+    0 0 22px #ff8b1b66;
+
+}
+
+.game-logo h1 strong {
+
+  color: #fff0d7;
+
+  font-size: 1.05em;
+
+  font-style: italic;
+
+  letter-spacing: -1px;
+
+}
+
+.escape-title {
+
+  display: inline-block;
+
+  margin-top: 7px;
+
+  padding: 7px 34px 9px;
+
+  background: #ff831b;
+
+  color: #12102c;
+
+  font-size: .7em;
+
+  transform: skew(-7deg);
+
+  border: 2px solid #27153e;
+
+  box-shadow: 0 5px 0 #080817;
+
+}
+
+.tagline {
+
+  margin: 13px 0 0;
+
+  color: #e2d7ff;
+
+  font-size: 10px;
+
+  font-weight: 900;
+
+  letter-spacing: 4px;
+
+  text-shadow: 0 2px 5px #080817;
+
+}
+
+/* MAIN MENU BUTTONS — BRUSH STROKE STYLE */
+
+.menu-buttons {
+
+  position: relative;
+
+  z-index: 7;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 13px;
+
+  width: min(390px, 90vw);
+
+}
+
+.menu-button {
+
+  position: relative;
+
+  isolation: isolate;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  width: 100%;
+
+  min-height: 59px;
+
+  padding: 12px 22px;
+
+  border: 0;
+
+  border-radius: 0;
+
+  clip-path: polygon(
+
+    3% 8%,
+
+    12% 3%,
+
+    27% 5%,
+
+    42% 1%,
+
+    58% 4%,
+
+    75% 2%,
+
+    94% 7%,
+
+    98% 18%,
+
+    96% 34%,
+
+    100% 48%,
+
+    97% 66%,
+
+    99% 83%,
+
+    91% 94%,
+
+    73% 96%,
+
+    55% 93%,
+
+    38% 98%,
+
+    20% 94%,
+
+    5% 97%,
+
+    2% 83%,
+
+    4% 65%,
+
+    0 48%,
+
+    3% 29%
+
+  );
+
+  background: #211b50;
+
+  box-shadow: none;
+
+  color: #fff0dc;
+
+  font-family: 'Bowlby One SC', 'Nunito', sans-serif;
+
+  font-size: clamp(15px, 1.6vw, 21px);
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  text-shadow: 1px 2px 0 #100d2b;
+
+  cursor: pointer;
+
+  transition:
+
+    transform .16s ease,
+
+    filter .16s ease,
+
+    background .16s ease;
+
+}
+
+.menu-button::before {
+
+  content: '';
+
+  position: absolute;
+
+  z-index: -1;
+
+  inset: 5px 9px;
+
+  opacity: .28;
+
+  background: repeating-linear-gradient(
+
+    176deg,
+
+    transparent 0,
+
+    transparent 5px,
+
+    rgba(255, 255, 255, .12) 6px,
+
+    transparent 8px
+
+  );
+
+  pointer-events: none;
+
+}
+
+.menu-button:hover {
+
+  transform: translateY(-3px) scale(1.025);
+
+  filter: brightness(1.18) drop-shadow(0 6px 4px #09071f88);
+
+  background: #30236b;
+
+}
+
+.menu-button:active {
+
+  transform: translateY(2px) scale(.99);
+
+  filter: brightness(.95);
+
+}
+
+.play-button {
+
+  min-height: 73px;
+
+  background: #ff891b;
+
+  color: #17102d;
+
+  font-size: clamp(21px, 2.4vw, 30px);
+
+  text-shadow: 1px 2px 0 #ffc15d;
+
+  filter: drop-shadow(0 5px 0 #6c2a08);
+
+}
+
+.play-button::before {
+
+  inset: 8px 12px;
+
+  opacity: .22;
+
+  background: repeating-linear-gradient(
+
+    178deg,
+
+    transparent 0,
+
+    transparent 5px,
+
+    rgba(90, 35, 0, .25) 6px,
+
+    transparent 9px
+
+  );
+
+}
+
+.play-button:hover {
+
+  background: #ffa12d;
+
+  filter: brightness(1.08) drop-shadow(0 7px 5px #09071f88);
+
+}
+
+.play-icon,
+
+.button-icon {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0;
+
+  font-size: 23px;
+
+  line-height: 1;
+
+}
+
+/* ROCKY CHARACTER */
+
+.rocky-area {
+
+  position: absolute;
+
+  z-index: 6;
+
+  bottom: 5%;
+
+  left: 22%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 170px;
+
+}
+
+.rocky-name {
+
+  color: #ff8b24;
+
+  font-family: 'Bowlby One SC', 'Nunito', sans-serif;
+
+  font-weight: 900;
+
+  letter-spacing: 3px;
+
+  font-size: 23px;
+
+  margin-bottom: -2px;
+
+  text-shadow: 2px 2px #100d30;
+
+}
+
+.rocky-character {
+
+  display: block;
+
+  width: 145px;
+
+  height: 205px;
+
+  object-fit: contain;
+
+  object-position: center bottom;
+
+  mix-blend-mode: multiply;
+
+  filter: grayscale(1) contrast(1.5) drop-shadow(0 5px 5px #05051688);
+
+  user-select: none;
+
+  pointer-events: none;
+
+}
+
+/* SEISMIC BRAND */
+
+.seismic-brand {
+
+  position: absolute;
+
+  z-index: 6;
+
+  bottom: 18px;
+
+  right: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: #fff0dc;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
+  text-shadow: 0 2px 5px #090923;
+
+}
+
+.seismic-brand img {
+
+  width: 34px;
+
+  height: 34px;
+
+  object-fit: contain;
+
+  mix-blend-mode: multiply;
+
+  user-select: none;
+
+}
+
+/* GROUND */
+
+.ground {
+
+  position: absolute;
+
+  z-index: 4;
+
+  bottom: 0;
+
+  left: -5%;
+
+  width: 110%;
+
+  height: 13%;
+
+  background: linear-gradient(180deg, #111027, #080b19);
+
+  border-radius: 50% 50% 0 0;
+
+  box-shadow: 0 -8px 25px #08091d;
+
+}
+
+.grass {
+
+  position: absolute;
+
+  top: -10px;
+
+  width: 120px;
+
+  height: 25px;
+
+  border-top: 5px solid #080817;
+
+  transform: rotate(-8deg);
+
+}
+
+.grass-left {
+
+  left: 5%;
+
+}
+
+.grass-right {
+
+  right: 5%;
+
+  transform: rotate(8deg);
+
+}
+
+/* SECONDARY SCREENS */
+
+.panel {
+
+  position: relative;
+
+  width: min(650px, 92vw);
+
+  margin: auto;
+
+  padding: clamp(25px, 5vw, 48px);
+
+  border: 3px solid #b37bff;
+
+  border-radius: 24px;
+
+  background: linear-gradient(145deg, #38206fef, #171038f5);
+
+  box-shadow:
+
+    0 14px 38px #070719bb,
+
+    inset 0 0 25px #c69aff22,
+
+    0 0 28px #8747ff44;
+
+  text-align: center;
+
+}
+
+.panel::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 8px;
+
+  border: 1px solid #e0c5ff66;
+
+  border-radius: 17px;
+
+  pointer-events: none;
+
+}
+
+.panel h2 {
+
+  margin: 0 0 30px;
+
+  color: #ffb04a;
+
+  font-family: 'Cinzel', Georgia, serif;
+
+  font-size: clamp(30px, 5vw, 48px);
+
+  text-shadow: 3px 3px #100c2b;
+
+  letter-spacing: 3px;
+
+}
+
+.setting-row {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1.5fr 50px;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 25px 0;
+
+  text-align: left;
+
+  font-weight: 900;
+
+}
+
+.setting-row input {
+
+  width: 100%;
+
+  accent-color: #ff8b1f;
+
+  cursor: pointer;
+
+}
+
+.setting-row span {
+
+  color: #ffc078;
+
+}
+
+.panel > .menu-button {
+
+  margin: 15px auto 0;
+
+  max-width: 300px;
+
+}
+
+.back-button {
+
+  background: #211b50;
+
+}
+
+.instructions {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+
+}
+
+.instructions div {
+
+  padding: 17px 10px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  background: #171039;
+
+  border: 1px solid #a978ff;
+
+  border-radius: 14px;
+
+  box-shadow: inset 0 0 18px #9a6bff1b;
+
+}
+
+.instructions strong {
+
+  color: #ffad43;
+
+  font-size: 20px;
+
+}
+
+.instructions span {
+
+  color: #eee5ff;
+
+  font-size: 14px;
+
+}
+
+.panel-note {
+
+  color: #ded3f5;
+
+  line-height: 1.7;
+
+  margin: 22px auto;
+
+}
+
+.empty-board {
+
+  padding: 35px 10px;
+
+  background: #171039;
+
+  border-radius: 14px;
+
+  border: 1px solid #a978ff;
+
+}
+
+.trophy {
+
+  color: #ffba40;
+
+  font-size: 55px;
+
+}
+
+.empty-board p {
+
+  font-weight: 1000;
+
+  font-size: 21px;
+
+  color: #ffb25b;
+
+}
+
+.empty-board small {
+
+  color: #c7b9e8;
+
+}
+
+/* GAMEPLAY — PRESERVE CANVAS RESPONSIVENESS */
+
+.game-play-screen {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  width: 100vw;
+
+  height: 100vh;
+
+  height: 100dvh;
+
+  margin: 0;
+
+  padding: 0;
+
+  display: block;
+
+  background: #11102e;
+
+}
+
+.game-canvas-wrapper {
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+
+  border-radius: 0;
+
+  box-shadow: none;
+
+  overflow: hidden;
+
+}
+
+.game-canvas-wrapper canvas {
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  aspect-ratio: auto;
+
+}
+
+.game-controls-hint {
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 18px;
+
+  z-index: 5;
+
+  transform: translateX(-50%);
+
+  color: #e9ddff;
+
+  background: #100b35c9;
+
+  border: 1px solid #a978ff88;
+
+  border-radius: 999px;
+
+  padding: 8px 18px;
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  white-space: nowrap;
+
+}
+
+.game-controls-hint span {
+
+  margin-left: 20px;
+
+}
+
+.exit-game {
+
+  position: absolute;
+
+  top: 18px;
+
+  right: 20px;
+
+  z-index: 110;
+
+  width: 180px;
+
+  min-height: 42px;
+
+  opacity: .94;
+
+  border-radius: 14px;
+
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+  .rocky-area {
+
+    left: 8%;
+
+  }
+
+  .game-logo h1 {
+
+    font-size: clamp(42px, 8vw, 70px);
+
+  }
+
+  .menu-buttons {
+
+    width: min(370px, 42vw);
+
+  }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+  .game-content {
+
+    padding-top: 28px;
+
+    padding-bottom: 130px;
+
+  }
+
+  .moon {
+
+    right: -12%;
+
+    top: 22%;
+
+    opacity: .62;
+
+  }
+
+  .house-left {
+
+    left: -12%;
+
+    transform: scale(.7);
+
+    transform-origin: bottom left;
+
+  }
+
+  .house-right {
+
+    right: -16%;
+
+    transform: scale(.62);
+
+    transform-origin: bottom right;
+
+  }
+
+  .tree-left {
+
+    left: -5%;
+
+    transform: scale(.7);
+
+    transform-origin: bottom left;
+
+  }
+
+  .tree-right {
+
+    right: -5%;
+
+    transform: scaleX(-1) scale(.7);
+
+    transform-origin: bottom right;
+
+  }
+
+  .rocky-area {
+
+    left: 1%;
+
+    bottom: 7%;
+
+    width: 110px;
+
+    transform: scale(.68);
+
+    transform-origin: bottom left;
+
+  }
+
+  .rocky-name {
+
+    font-size: 17px;
+
+  }
+
+  .rocky-character {
+
+    width: 100px;
+
+    height: 155px;
+
+  }
+
+  .seismic-brand {
+
+    right: 12px;
+
+    bottom: 12px;
+
+    font-size: 7px;
+
+    letter-spacing: .8px;
+
+  }
+
+  .seismic-brand img {
+
+    width: 26px;
+
+    height: 26px;
+
+  }
+
+  .instructions {
+
+    grid-template-columns: 1fr 1fr;
+
+  }
+
+  .setting-row {
+
+    grid-template-columns: 1fr 1.2fr 40px;
+
+    font-size: 13px;
+
+  }
+
+  .menu-buttons {
+
+    width: min(330px, 72vw);
+
+    gap: 9px;
+
+  }
+
+  .game-logo {
+
+    margin-bottom: 18px;
+
+  }
+
+  .game-logo h1 {
+
+    font-size: clamp(38px, 10vw, 62px);
+
+  }
+
+  .tagline {
+
+    font-size: 8px;
+
+    letter-spacing: 2.5px;
+
+  }
+
+  .menu-button {
+
+    min-height: 48px;
+
+    padding: 9px 12px;
+
+    font-size: 13px;
+
+  }
+
+  .play-button {
+
+    min-height: 58px;
+
+    font-size: 19px;
+
+  }
+
+  .panel {
+
+    width: min(94vw, 560px);
+
+    padding: 25px 16px;
+
+  }
+
+  .panel h2 {
+
+    font-size: clamp(25px, 7vw, 38px);
+
+  }
+
+  .setting-row {
+
+    grid-template-columns: 1fr 1.2fr 42px;
+
+    gap: 8px;
+
+    padding: 12px 10px;
+
+    font-size: 13px;
+
+  }
+
+  .instructions div {
+
+    gap: 12px;
+
+    padding: 11px;
+
+    font-size: 13px;
+
+  }
+
+  .instructions strong {
+
+    min-width: 85px;
+
+  }
+
+  .exit-game {
+
+    top: 10px;
+
+    right: 10px;
+
+    width: 130px;
+
+    min-height: 36px;
+
+    font-size: 13px;
+
+  }
+
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+  .game-logo h1 {
+
+    font-size: 34px;
+
+  }
+
+  .menu-buttons {
+
+    width: 75vw;
+
+  }
+
+  .menu-button {
+
+    min-height: 43px;
+
+    font-size: 12px;
+
+  }
+
+  .rocky-area {
+
+    transform: scale(.58);
+
+    transform-origin: bottom left;
+
+  }
+
+  .seismic-brand span {
+
+    max-width: 120px;
+
+  }
+
+  .panel {
+
+    padding: 22px 12px;
+
+  }
+
+}
+
+/* SHORT DESKTOP SCREENS */
+
+@media (max-height: 700px) and (min-width: 651px) {
+
+  .game-content {
+
+    padding-top: 15px;
+
+  }
+
+  .game-logo {
+
+    margin-bottom: 12px;
+
+  }
+
+  .game-logo h1 {
+
+    font-size: 48px;
+
+  }
+
+  .menu-buttons {
+
+    gap: 7px;
+
+  }
+
+  .menu-button {
+
+    min-height: 48px;
+
+    padding: 7px 14px;
+
+  }
+
+  .play-button {
+
+    min-height: 58px;
+
+  }
+
+  .rocky-area {
+
+    bottom: 3%;
+
+  }
+
+  .rocky-character {
+
+    height: 175px;
+
+  }
+
+}
+
+/* MENU SCREEN POSITIONING — REFERENCE IMAGE 2 */
+
+.screen-menu {
+
+  display: block;
+
+  min-height: 100vh;
+
+  min-height: 100dvh;
+
+  padding: 0;
+
+}
+
+.screen-menu .game-logo {
+
+  position: absolute;
+
+  top: 7%;
+
+  left: 50%;
+
+  width: min(650px, 62vw);
+
+  margin: 0;
+
+  transform: translateX(-50%);
+
+}
+
+.screen-menu .logo-castle {
+
+  font-size: clamp(25px, 3.4vw, 46px);
+
+  margin-bottom: -5px;
+
+}
+
+.screen-menu .game-logo h1 {
+
+  font-size: clamp(58px, 7.2vw, 100px);
+
+  line-height: .88;
+
+}
+
+.screen-menu .game-logo h1 strong {
+
+  font-size: 1.08em;
+
+}
+
+.screen-menu .escape-title {
+
+  margin-top: 9px;
+
+  padding: 8px 38px 11px;
+
+  font-size: .72em;
+
+}
+
+.screen-menu .tagline {
+
+  margin-top: 15px;
+
+  font-size: clamp(9px, 1vw, 12px);
+
+  letter-spacing: 3.5px;
+
+}
+
+.screen-menu .menu-buttons {
+
+  top: 51%;
+
+  left: 50%;
+
+  width: min(390px, 29vw);
+
+  gap: 10px;
+
+  transform: translate(-50%, -4%);
+
+}
+
+/* ROCKY — SAME POSITION AS DESKTOP */
+.screen-menu .rocky-area {
+  left: 23%;
+  bottom: 5%;
+  width: 130px;
+  transform: none;
+}
+
+.screen-menu .rocky-name {
+  font-size: 19px;
+  margin-bottom: 2px;
+}
+
+.screen-menu .rocky-character {
+  width: 115px;
+  height: 165px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.screen-menu .rocky-character {
+
+  width: 145px;
+
+  height: 205px;
+
+}
+
+.screen-menu .seismic-brand {
+
+  right: 25px;
+
+  bottom: 18px;
+
+}
+
+/* TABLET MENU ADJUSTMENTS */
+
+@media (max-width: 900px) {
+
+  .screen-menu .game-logo {
+
+    top: 6%;
+
+    width: 70vw;
+
+  }
+
+  .screen-menu .game-logo h1 {
+
+    font-size: clamp(48px, 8vw, 75px);
+
+  }
+
+  .screen-menu .menu-buttons {
+
+    top: 48%;
+
+    width: min(350px, 38vw);
+
+  }
+
+  .screen-menu .rocky-area {
+
+    left: 12%;
+
+    bottom: 5%;
+
+  }
+
+}
+
+/* MOBILE MENU ADJUSTMENTS */
+
+@media (max-width: 650px) {
+
+  .screen-menu .game-logo {
+
+    top: 7%;
+
+    width: 92vw;
+
+  }
+
+  .screen-menu .game-logo h1 {
+
+    font-size: clamp(38px, 10vw, 60px);
+
+  }
+
+  .screen-menu .logo-castle {
+
+    font-size: 22px;
+
+  }
+
+  .screen-menu .tagline {
+
+    margin-top: 9px;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+  }
+
+  .screen-menu .menu-buttons {
+
+    top: 47%;
+
+    left: 50%;
+
+    width: min(310px, 67vw);
+
+    gap: 7px;
+
+    transform: translate(-50%, 0);
+
+  }
+
+  .screen-menu .menu-button {
+
+    min-height: 45px;
+
+    font-size: 13px;
+
+  }
+
+  .screen-menu .play-button {
+
+    min-height: 53px;
+
+    font-size: 18px;
+
+  }
+
+  .screen-menu .rocky-area {
+
+    left: 0;
+
+    bottom: 4%;
+
+    width: 105px;
+
+    transform: scale(.62);
+
+    transform-origin: bottom left;
+
+  }
+
+  .screen-menu .seismic-brand {
+
+    right: 9px;
+
+    bottom: 9px;
+
+    gap: 5px;
+
+    font-size: 6px;
+
+    letter-spacing: .5px;
+
+  }
+
+  .screen-menu .seismic-brand img {
+
+    width: 23px;
+
+    height: 23px;
+
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .screen-menu .game-logo h1 {
+
+    font-size: 35px;
+
+  }
+
+  .screen-menu .menu-buttons {
+
+    top: 45%;
+
+    width: 73vw;
+
+  }
+
+  .screen-menu .rocky-area {
+
+    transform: scale(.52);
+
+    transform-origin: bottom left;
+
+  }
+
+}
+
+/* FIX MAIN MENU LAYOUT */
+
+.screen-menu {
+
+  position: relative;
+
+  min-height: 100vh;
+
+  min-height: 100dvh;
+
+}
+
+.screen-menu .game-logo {
+
+  position: absolute;
+
+  top: 10%;
+
+  left: 50%;
+
+  width: min(650px, 62vw);
+
+  margin: 0;
+
+  transform: translateX(-50%);
+
+}
+
+.screen-menu .menu-buttons {
+
+  position: absolute;
+
+  top: 52%;
+
+  left: 50%;
+
+  width: min(390px, 30vw);
+
+  margin: 0;
+
+  transform: translateX(-50%);
+
+}
+
+.screen-menu .rocky-area {
+
+  position: absolute;
+
+  left: 22%;
+
+  bottom: 5%;
+
+  width: 170px;
+
+}
+
+.screen-menu .rocky-character {
+
+  width: 155px;
+
+  height: 210px;
+
+  mix-blend-mode: multiply;
+
+}
+
+@media (max-width: 900px) {
+
+  .screen-menu .menu-buttons {
+
+    width: min(350px, 42vw);
+
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .screen-menu .game-logo {
+
+    top: 7%;
+
+    width: 92vw;
+
+  }
+
+  .screen-menu .menu-buttons {
+
+    top: 48%;
+
+    width: min(310px, 70vw);
+
+  }
+
+  .screen-menu .rocky-area {
+
+    left: 1%;
+
+    bottom: 4%;
+
+  }
+
+}
+
+/* ROCKY — FINAL REFERENCE POSITION */
+
+.screen-menu .rocky-area {
+
+  position: absolute;
+
+  z-index: 8;
+
+  left: 24%;
+
+  bottom: 8%;
+
+  width: 130px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  transform: none;
+
+}
+
+.screen-menu .rocky-name {
+
+  margin: 0 0 2px;
+
+  font-size: 23px;
+
+  letter-spacing: 2px;
+
+  color: #ff921e;
+
+}
+
+.screen-menu .rocky-character {
+
+  display: block;
+
+  width: 115px;
+
+  height: 165px;
+
+  object-fit: contain;
+
+  object-position: center bottom;
+
+  background: transparent;
+
+  mix-blend-mode: normal;
+
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .3));
+
+}
+
+@media (max-width: 900px) {
+
+  .screen-menu .rocky-area {
+
+    left: 12%;
+
+    bottom: 6%;
+
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .screen-menu .rocky-area {
+
+    left: 2%;
+
+    bottom: 4%;
+
+    transform: scale(.8);
+
+    transform-origin: bottom left;
+
+  }
+
+}
+
+/* MAIN MENU ICONS — MATCH REFERENCE IMAGE 2 */
+
+.screen-menu .menu-button {
+
+  justify-content: flex-start;
+
+  padding-left: clamp(28px, 4.2vw, 62px);
+
+  gap: 22px;
+
+}
+
+.screen-menu .menu-button .button-icon,
+
+.screen-menu .menu-button .play-icon {
+
+  flex: 0 0 34px;
+
+  width: 34px;
+
+  height: 34px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0;
+
+  color: #fff0d9;
+
+  font-size: 30px;
+
+  line-height: 1;
+
+  text-shadow: 0 2px 2px #100d2b;
+
+}
+
+.screen-menu .menu-button .button-icon svg,
+
+.screen-menu .menu-button .play-icon svg {
+
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  overflow: visible;
+
+  stroke: currentColor;
+
+}
+
+.screen-menu .menu-button:not(.play-button) {
+
+  color: #fff0dc;
+
+}
+
+.screen-menu .menu-button:not(.play-button) .button-icon {
+
+  color: #fff0d9;
+
+}
+
+.screen-menu .play-button {
+
+  padding-left: clamp(28px, 4.2vw, 62px);
+
+  gap: 22px;
+
+}
+
+@media (max-width: 650px) {
+
+  .screen-menu .menu-button {
+
+    padding-left: 24px;
+
+    gap: 14px;
+
+  }
+
+  .screen-menu .menu-button .button-icon,
+
+  .screen-menu .menu-button .play-icon {
+
+    flex-basis: 27px;
+
+    width: 27px;
+
+    height: 27px;
+
+    font-size: 25px;
+
+  }
+
+}
+
+/* FINAL POLISH — subtle menu-only effects */
+
+@keyframes rocky-idle {
+
+  0%, 100% { transform: translateY(0); }
+
+  50% { transform: translateY(-4px); }
+
+}
+
+@keyframes menu-logo-glow {
+
+  0%, 100% {
+
+    filter: drop-shadow(6px 8px 0 #100d30) drop-shadow(0 0 0 rgba(255, 139, 25, 0));
+
+  }
+
+  50% {
+
+    filter: drop-shadow(6px 8px 0 #100d30) drop-shadow(0 0 9px rgba(255, 139, 25, .16));
+
+  }
+
+}
+
+.screen-menu .game-logo {
+
+  animation: menu-logo-glow 5s ease-in-out infinite;
+
+}
+
+.screen-menu .rocky-character {
+
+  transform-origin: center bottom;
+
+  animation: rocky-idle 3.2s ease-in-out infinite;
+
+}
+
+.screen-menu .menu-button {
+
+  will-change: transform, filter;
+
+  backface-visibility: hidden;
+
+}
+
+.screen-menu .menu-button .button-icon,
+
+.screen-menu .menu-button .play-icon {
+
+  transition:
+
+    transform .2s ease,
+
+    color .2s ease,
+
+    filter .2s ease;
+
+}
+
+.screen-menu .menu-button:hover .button-icon,
+
+.screen-menu .menu-button:hover .play-icon {
+
+  transform: scale(1.12);
+
+  filter: drop-shadow(0 0 5px currentColor);
+
+}
+
+.screen-menu .play-button:hover .play-icon {
+
+  transform: translateX(3px) scale(1.12);
+
+}
+
+.screen-menu .menu-button:focus-visible {
+
+  outline: 3px solid #fff0d9;
+
+  outline-offset: 5px;
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .screen-menu .game-logo,
+
+  .screen-menu .rocky-character {
+
+    animation: none;
+
+  }
+
+  .screen-menu .menu-button,
+
+  .screen-menu .menu-button .button-icon,
+
+  .screen-menu .menu-button .play-icon {
+
+    transition: none;
+
+  }
+
+}
+
+/* FINAL MENU MATCH — brush buttons + readable Seismic community credit */
+
+.screen-menu .menu-buttons {
+
+  width: min(430px, 32vw);
+
+  gap: 12px;
+
+}
+
+.screen-menu .menu-button {
+
+  min-height: 66px;
+
+  padding: 12px 30px 12px clamp(30px, 4.3vw, 66px);
+
+  justify-content: flex-start;
+
+  gap: 24px;
+
+  font-family: 'Bowlby One SC', 'Nunito', sans-serif;
+
+  font-size: clamp(19px, 1.75vw, 25px);
+
+  letter-spacing: .6px;
+
+  clip-path: polygon(
+
+    3% 7%, 12% 2%, 28% 4%, 43% 1%, 59% 4%, 76% 2%,
+
+    94% 6%, 98% 18%, 96% 35%, 100% 49%, 97% 66%,
+
+    99% 83%, 91% 95%, 73% 97%, 55% 94%, 38% 98%,
+
+    20% 95%, 5% 98%, 2% 83%, 4% 65%, 0 48%, 3% 28%
+
+  );
+
+  text-shadow: none;
+
+}
+
+.screen-menu .menu-button:not(.play-button) {
+
+  background: #211b50;
+
+  color: #fff0dc;
+
+}
+
+.screen-menu .menu-button .button-icon,
+
+.screen-menu .menu-button .play-icon {
+
+  flex: 0 0 38px;
+
+  width: 38px;
+
+  height: 38px;
+
+  font-size: 34px;
+
+  color: #fff0d9;
+
+}
+
+.screen-menu .play-button {
+
+  min-height: 78px;
+
+  background: #ff891b;
+
+  color: #17102d;
+
+  font-size: clamp(25px, 2.35vw, 33px);
+
+  padding-left: clamp(30px, 4.3vw, 66px);
+
+  gap: 24px;
+
+  filter: drop-shadow(0 5px 0 #6c2a08);
+
+}
+
+.screen-menu .play-button .play-icon {
+
+  color: #17102d;
+
+  font-size: 39px;
+
+}
+
+.screen-menu .seismic-brand {
+
+  right: 25px;
+
+  bottom: 18px;
+
+  gap: 11px;
+
+  font-size: clamp(11px, 1vw, 14px);
+
+  font-weight: 1000;
+
+  letter-spacing: 1.4px;
+
+  color: #fff7e9;
+
+  text-shadow:
+
+    0 2px 3px #090923,
+
+    0 0 8px #090923,
+
+    1px 1px 0 #090923;
+
+  white-space: nowrap;
+
+}
+
+.screen-menu .seismic-brand img {
+
+  width: 42px;
+
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  filter: drop-shadow(0 2px 4px #090923);
+
+  mix-blend-mode: normal;
+
+}
+
+@media (max-width: 900px) {
+
+  .screen-menu .menu-buttons {
+
+    width: min(390px, 44vw);
+
+  }
+
+  .screen-menu .seismic-brand {
+
+    right: 16px;
+
+    bottom: 14px;
+
+    font-size: 11px;
+
+  }
+
+  .screen-menu .seismic-brand img {
+
+    width: 36px;
+
+    height: 36px;
+
+    flex-basis: 36px;
+
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .screen-menu .menu-buttons {
+
+    width: min(330px, 72vw);
+
+    gap: 9px;
+
+  }
+
+  .screen-menu .menu-button {
+
+    min-height: 52px;
+
+    padding-left: 25px;
+
+    gap: 15px;
+
+    font-size: 15px;
+
+  }
+
+  .screen-menu .menu-button .button-icon,
+
+  .screen-menu .menu-button .play-icon {
+
+    flex-basis: 29px;
+
+    width: 29px;
+
+    height: 29px;
+
+    font-size: 27px;
+
+  }
+
+  .screen-menu .play-button {
+
+    min-height: 61px;
+
+    font-size: 20px;
+
+  }
+
+  .screen-menu .play-button .play-icon {
+
+    font-size: 30px;
+
+  }
+
+  .screen-menu .seismic-brand {
+
+    right: 10px;
+
+    bottom: 10px;
+
+    gap: 7px;
+
+    font-size: 9px;
+
+    letter-spacing: .7px;
+
+  }
+
+  .screen-menu .seismic-brand img {
+
+    width: 30px;
+
+    height: 30px;
+
+    flex-basis: 30px;
+
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .screen-menu .seismic-brand {
+
+    right: 7px;
+
+    bottom: 7px;
+
+    font-size: 8px;
+
+    letter-spacing: .3px;
+
+  }
+
+  .screen-menu .seismic-brand img {
+
+    width: 25px;
+
+    height: 25px;
+
+    flex-basis: 25px;
+
+  }
+
+}
+
+
+/* CREATOR CREDIT — BILI DZ 24/7 */
+.screen-menu .creator-credit {
+  position: absolute;
+  z-index: 12;
+  left: clamp(14px, 2.7vw, 46px);
+  bottom: clamp(14px, 2.2vh, 24px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: min(430px, 45vw);
+}
+
+.screen-menu .creator-credit__name {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 8px 20px;
+  color: #17102d;
+  background: #ff891b;
+  clip-path: polygon(3% 8%, 96% 3%, 100% 50%, 96% 96%, 4% 92%, 0 50%);
+  font-family: 'Bowlby One SC', 'Nunito', sans-serif;
+  font-size: clamp(15px, 1.45vw, 22px);
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 1px 0 #ffc15d;
+  filter: drop-shadow(0 4px 0 #6c2a08);
+}
+
+.screen-menu .creator-credit__x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  color: #fff7e9;
+  background: #090923;
+  border: 2px solid #ff891b;
+  border-radius: 9px;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 32px;
+  line-height: 1;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+  box-shadow: 0 3px 8px #08081799;
+}
+
+.screen-menu .creator-credit__handle {
+  color: #fff7e9;
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(14px, 1.35vw, 20px);
+  font-weight: 1000;
+  letter-spacing: .3px;
+  text-decoration: none;
+  text-shadow: 0 2px 5px #090923, 0 0 8px #090923;
+  white-space: nowrap;
+}
+
+.screen-menu .creator-credit__x:hover,
+.screen-menu .creator-credit__handle:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+
+.screen-menu .creator-credit__x:focus-visible,
+.screen-menu .creator-credit__handle:focus-visible {
+  outline: 3px solid #fff0d9;
+  outline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+  .screen-menu .creator-credit {
+    left: 14px;
+    bottom: 12px;
+    gap: 7px;
+  }
+
+  .screen-menu .creator-credit__name {
+    min-height: 40px;
+    padding: 7px 14px;
+    font-size: 15px;
+  }
+
+  .screen-menu .creator-credit__x {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+    font-size: 27px;
+  }
+
+  .screen-menu .creator-credit__handle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 650px) {
+  .screen-menu .creator-credit {
+    left: 8px;
+    bottom: 8px;
+    gap: 5px;
+    max-width: 54vw;
+  }
+
+  .screen-menu .creator-credit__name {
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .screen-menu .creator-credit__x {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    font-size: 22px;
+  }
+
+  .screen-menu .creator-credit__handle {
+    font-size: 11px;
+  }
+
+  .screen-menu .seismic-brand {
+    max-width: 43vw;
+    right: 8px;
+    bottom: 8px;
+    gap: 5px;
+    font-size: 8px;
+    letter-spacing: .35px;
+  }
+
+  .screen-menu .seismic-brand img {
+    width: 25px;
+    height: 25px;
+    flex-basis: 25px;
+  }
+}
+
+@media (max-width: 380px) {
+  .screen-menu .creator-credit {
+    gap: 4px;
+    max-width: 55vw;
+  }
+
+  .screen-menu .creator-credit__name {
+    font-size: 9px;
+    padding-inline: 8px;
+  }
+
+  .screen-menu .creator-credit__x {
+    flex-basis: 28px;
+    width: 28px;
+    height: 28px;
+    font-size: 19px;
+  }
+
+  .screen-menu .creator-credit__handle {
+    font-size: 9px;
+  }
+}
+
+/* ROCKY'S HAUNTED ESCAPE — PROFESSIONAL MOBILE LANDSCAPE MENU */
+@media (orientation: landscape) and (max-height: 600px) and (max-width: 1100px) {
+
+  .screen-menu {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  /* GAME TITLE */
+  .screen-menu .game-logo {
+    top: 3%;
+    left: 50%;
+    width: min(440px, 48vw);
+    margin: 0;
+    transform: translateX(-50%);
+  }
+
+  .screen-menu .logo-castle {
+    font-size: clamp(13px, 2vw, 20px);
+    letter-spacing: 4px;
+    margin-bottom: -3px;
+  }
+
+  .screen-menu .game-logo h1 {
+    font-size: clamp(32px, 5vw, 49px);
+    line-height: 0.84;
+    letter-spacing: 0;
+  }
+
+  .screen-menu .game-logo h1 strong {
+    font-size: 1.02em;
+  }
+
+  .screen-menu .escape-title {
+    margin-top: 4px;
+    padding: 4px 24px 5px;
+    font-size: 0.62em;
+  }
+
+  .screen-menu .tagline {
+    margin-top: 5px;
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+
+  /* CENTERED MENU BUTTONS */
+  .screen-menu .menu-buttons {
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    width: min(340px, 39vw);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    margin: 0;
+    transform: translateX(-50%);
+  }
+
+  .screen-menu .menu-button {
+    width: 100%;
+    min-height: 38px;
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .screen-menu .play-button {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  /* ROCKY CHARACTER */
+  .screen-menu .rocky-area {
+    left: 3%;
+    bottom: 3%;
+    width: 90px;
+    transform: none;
+  }
+
+  .screen-menu .rocky-name {
+    margin-bottom: 2px;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+  .screen-menu .rocky-character {
+    width: 78px;
+    height: 112px;
+    object-fit: contain;
+  }
+
+  /* COMMUNITY BRANDING */
+  .screen-menu .seismic-brand {
+    right: 12px;
+    bottom: 9px;
+    gap: 6px;
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+
+  .screen-menu .seismic-brand img {
+    width: 23px;
+    height: 23px;
+  }
+}
+
+/* EXTRA SMALL LANDSCAPE HEIGHT */
+@media (orientation: landscape) and (max-height: 400px) and (max-width: 900px) {
+
+  .screen-menu .game-logo {
+    top: 2%;
+    width: min(350px, 42vw);
+  }
+
+  .screen-menu .game-logo h1 {
+    font-size: clamp(27px, 4.5vw, 38px);
+  }
+
+  .screen-menu .menu-buttons {
+    top: 41%;
+    width: min(280px, 36vw);
+    gap: 4px;
+  }
+
+  .screen-menu .menu-button {
+    min-height: 31px;
+    padding: 4px 10px;
+    font-size: 10px;
+  }
+
+  .screen-menu .play-button {
+    min-height: 36px;
+    font-size: 13px;
+  }
+
+  .screen-menu .rocky-area {
+    transform: scale(0.78);
+    transform-origin: bottom left;
+  }
+}
+
+/* ROCKY — MOBILE LANDSCAPE FINAL SIZE AND POSITION */
+@media (orientation: landscape) and (max-height: 600px) and (max-width: 1100px) {
+  .screen-menu .rocky-area {
+    left: 20% !important;
+    bottom: 5% !important;
+    width: 90px !important;
+    transform: none !important;
+    align-items: center;
+  }
+
+  .screen-menu .rocky-name {
+    font-size: 15px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .screen-menu .rocky-character {
+    width: 78px !important;
+    height: 112px !important;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+}
